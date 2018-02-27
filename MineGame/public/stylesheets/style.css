@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.main{
+	width:700px;
+	height:500px;
+	border:1px solid #ccc;
+	margin-left: calc((100% - ( 700px))/2);
+}
+.cell{
+	float:left;
+	line-height: 20px;
+    text-align: center
+}
