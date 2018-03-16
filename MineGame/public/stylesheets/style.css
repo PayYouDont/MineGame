@@ -15,5 +15,13 @@ a {
 .cell{
 	float:left;
 	line-height: 20px;
-    text-align: center
+    text-align: center;
+}
+.cell_bg{
+	background-color:#b7b7b7;
+	width:20px;
+}
+.cell_bg span{
+	font-size:16px;
+	font-weight:666;
 }

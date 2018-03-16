@@ -8,12 +8,17 @@ var createCell = function(){
 			id:0,
 			number:0,//-1(雷),0(空白格),1-8周围雷数字
 			image:function(div){
-				var img = "<img src='/img/pwd_20.png'/>";
+				var number = this.number;
+				var html = "";
+				html = "<div class='cell_bg'>";
 				if(this.isMine()){
-					$(div).html(img)
+					html +="<img src='/img/mine.png'>";
 				}else{
-					$(div).html(this.number);
+					var clor = cell_bg.number[number];
+					html +="<span style='color:"+clor+";'>"+number+"</span>";
 				}
+				html += "</div>";
+				$(div).html(html)
 			},
 			isMine:function(){
 				return this.number==-1;
@@ -23,18 +28,10 @@ var createCell = function(){
 					alert("game over");
 				}else{
 					if(this.number==0){
-						nearCellBreak(this.id);
+						//nearCellBreak(this.id);
 					}else{
-						$(div).html(this.number);
+						$(div).html(this.image());
 					}
-				}
-			},
-			contextmenu:function(div){//鼠标右键
-				if(this.isMine()){
-					var img = "<img src='/img/pwd_20.png'/>";
-					$(div).html(img)
-				}else{
-					
 				}
 			}
 		};
@@ -89,18 +86,31 @@ function initCell(diff){
 	for(i=0;i<cells.length;i++){
 		var cell = cells[i];
 		var number = cell.number;
-		html += "<div class='cell' data-index='"+cell.id+"' " +
-				"style='width:20px;height:20px;" +
-				"border:1px solid #c1c1c1c1'></div>"
+		html += "<div class='cell' data-index='"+cell.id+"'style='width:20px;height:20px;border:1px solid #c1c1c1c1'></div>"
 	}
 	$(".cells").html(html);
 	//鼠标左键点击事件
-	$(".cell").on("click",function(e){
-		var id = $(this).data("index");
-		var cell = cells[id];
-		cell.image(this);
-		cell.clicked(this);
+	$(".cell").mousedown(function(e){
+		if(e.button==0){//左键按下
+			
+		}else if(e.button==1){//滚轮
+			
+		}else{//右键
+			
+		}
 	});
+	$(".cell").mouseup(function(e){
+		if(e.button==0){//左键松开
+			var id = $(this).data("index");
+			var cell = cells[id];
+			cell.image(this);
+			cell.clicked(this);
+		}else if(e.button==1){//滚轮
+			
+		}else{//右键
+			
+		}
+	})
 	//鼠标右键点击事件
 	$(".cell").on("contextmenu",function(e){
 		var id = $(this).data("index");
